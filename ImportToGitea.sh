@@ -21,7 +21,7 @@ for repo_source in $REPOS_SOURCE; do
 
     ## IMPORT in gitea
     curl -H "Authorization: token $GITEA_TOKEN" \
-            --data "clone_addr=$repo_convert&uid=$GITEA_ORGA_ID&repo_name=$repo_name" \
+            --data "clone_addr=$repo_source&uid=$GITEA_ORGA_ID&repo_name=$repo_name" \
             http://$GITEA_HOST:$GITEA_PORT/api/v1/repos/migrate
 
     if [ ! -d "$repo_target" ]; then
@@ -29,9 +29,9 @@ for repo_source in $REPOS_SOURCE; do
             exit 1;
     fi
         
-    cp -bar $repo_convert/{subgit,svn,db,logs} $repo_target/
+    cp -bar $repo_source/{subgit,svn,db,logs} $repo_target/
     chown $GIT_UID:$GIT_GID -R $repo_target
 
     #su -l $GIT_NAME -s /bin/bash -c "subgit install $repo_target"
     
-done <   <(find "$GIT_REPO" -iname "*.git" -print0)
+done <   <(find "$REPOS_SOURCE" -iname "*.git" -print0)
