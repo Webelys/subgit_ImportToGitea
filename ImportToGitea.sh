@@ -11,12 +11,12 @@ do
 
     if [ ! -d "$repo_source" ]; then
             echo "Is not a project source"
-            exit 1;
+            continue;
     fi
     
     if [ -d "$repo_target" ]; then
             echo "Is yet imported"
-            exit 1;
+            continue;
     fi
 
     ## IMPORT in gitea
