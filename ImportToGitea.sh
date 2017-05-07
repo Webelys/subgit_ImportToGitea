@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. importToGitea.conf
+. ImportToGitea.conf
 
 for repo_source in $REPOS_SOURCE; do
 
