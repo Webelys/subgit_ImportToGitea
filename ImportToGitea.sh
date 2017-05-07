@@ -2,8 +2,8 @@
 
 . ImportToGitea.conf
 
-for repo_source in $REPOS_SOURCE; do
-
+while IFS= read -r -d '' repo_source
+do
     echo $repo_source
     repo_name=$(basename $repo_source .git)
 
