@@ -8,6 +8,8 @@ do
     repo_name=$(basename $repo_source .git)
 
     repo_target=$GITEA_REPO/$GITEA_ORGA/$repo_name.git
+    #LowerCase
+    repo_target=${repo_target,,}
 
     if [ ! -d "$repo_source" ]; then
             echo "Is not a project source"
