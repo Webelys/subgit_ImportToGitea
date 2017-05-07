@@ -22,7 +22,7 @@ for repo_source in $REPOS_SOURCE; do
     ## IMPORT in gitea
     curl -H "Authorization: token $GITEA_TOKEN" \
             --data "clone_addr=$repo_source&uid=$GITEA_ORGA_ID&repo_name=$repo_name" \
-            http://$GITEA_HOST:$GITEA_PORT/api/v1/repos/migrate
+            $GITEA_HOST:$GITEA_PORT/api/v1/repos/migrate
 
     if [ ! -d "$repo_target" ]; then
             echo "Target git is not set "
