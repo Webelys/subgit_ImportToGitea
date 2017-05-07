@@ -7,7 +7,7 @@ for repo_source in $REPOS_SOURCE; do
     echo $repo_source
     repo_name=$(basename $repo_source .git)
 
-    repo_target=$PROJECT_REPO/$PROJECT_ORGA/$repo_name.git
+    repo_target=$GITEA_REPO/$GITEA_ORGA/$repo_name.git
 
     if [ ! -d "$repo_source" ]; then
             echo "Is not a project source"
@@ -21,7 +21,7 @@ for repo_source in $REPOS_SOURCE; do
 
     ## IMPORT in gitea
     curl -H "Authorization: token $GITEA_TOKEN" \
-            --data "clone_addr=$repo_convert&uid=$PROJECT_UID&repo_name=$repo_name" \
+            --data "clone_addr=$repo_convert&uid=$GITEA_ORGA_ID&repo_name=$repo_name" \
             http://$GITEA_HOST:$GITEA_PORT/api/v1/repos/migrate
 
     if [ ! -d "$repo_target" ]; then
